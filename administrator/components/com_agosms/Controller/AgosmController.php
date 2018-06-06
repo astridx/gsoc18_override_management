@@ -36,7 +36,7 @@ class AgosmController extends FormController
 		if ($categoryId)
 		{
 			// If the category has been passed in the URL check it.
-			$allow = JFactory::getUser()->authorise('core.create', $this->option . '.category.' . $categoryId);
+			$allow = \JFactory::getUser()->authorise('core.create', $this->option . '.category.' . $categoryId);
 		}
 
 		if ($allow !== null)
@@ -77,7 +77,7 @@ class AgosmController extends FormController
 			return false;
 		}
 
-		$user = JFactory::getUser();
+		$user = \JFactory::getUser();
 
 		// Check if can edit own core.edit.own.
 		$canEditOwn = $user->authorise('core.edit.own', $this->option . '.category.' . (int) $item->catid) && $item->created_by == $user->id;
@@ -118,13 +118,13 @@ class AgosmController extends FormController
 	 *
 	 * @since   1.6
 	 */
-	protected function postSaveHook(JModelLegacy $model, $validData = array())
+	protected function postSaveHook(\JModelLegacy $model, $validData = array())
 	{
 		$task = $this->getTask();
 
 		if ($task == 'save')
 		{
-			$this->setRedirect(JRoute::_('index.php?option=com_agosms&view=agosms', false));
+			$this->setRedirect(\JRoute::_('index.php?option=com_agosms&view=agosms', false));
 		}
 	}
 }

@@ -145,14 +145,15 @@ class AgosmModel extends AdminModel
 	/**
 	 * Method to get the data that should be injected in the form.
 	 *
-	 * @return  array  The default data is an empty array.
+	 * @return  mixed  The data for the form.
 	 *
 	 * @since   1.6
 	 */
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = \JFactory::getApplication()->getUserState('com_agosms.edit.agosm.data', array());
+		$app  = \JFactory::getApplication();
+		$data = $app->getUserState('com_agosms.edit.agosm.data', array());
 
 		if (empty($data))
 		{
@@ -161,8 +162,10 @@ class AgosmModel extends AdminModel
 			// Prime some default values.
 			if ($this->getState('agosm.id') == 0)
 			{
-				$app = \JFactory::getApplication();
-				$data->set('catid', $app->input->get('catid', $app->getUserState('com_agosms.agosms.filter.category_id'), 'int'));
+				$filters     = (array) $app->getUserState('com_agosms.agosms.filter');
+				$filterCatId = $filters['category_id'] ?? null;
+
+				$data->set('catid', $app->input->getInt('catid', $filterCatId));
 			}
 		}
 
@@ -186,11 +189,11 @@ class AgosmModel extends AdminModel
 		$user = \JFactory::getUser();
 
 		$table->title = htmlspecialchars_decode($table->title, ENT_QUOTES);
-		$table->alias = JApplicationHelper::stringURLSafe($table->alias);
+		$table->alias = \JApplicationHelper::stringURLSafe($table->alias);
 
 		if (empty($table->alias))
 		{
-			$table->alias = JApplicationHelper::stringURLSafe($table->title);
+			$table->alias = \JApplicationHelper::stringURLSafe($table->title);
 		}
 
 		if (empty($table->id))
@@ -252,7 +255,7 @@ class AgosmModel extends AdminModel
 	{
 		$app = \JFactory::getApplication();
 
-		JLoader::register('CategoriesHelper', JPATH_ADMINISTRATOR . '/components/com_categories/helpers/categories.php');
+		\JLoader::register('CategoriesHelper', JPATH_ADMINISTRATOR . '/components/com_categories/helpers/categories.php');
 
 		// Cast catid to integer for comparison
 		$catid = (int) $data['catid'];
@@ -274,7 +277,7 @@ class AgosmModel extends AdminModel
 			$table['published'] = 1;
 
 			// Create new category and get catid back
-			$data['catid'] = CategoriesHelper::createCategory($table);
+			$data['catid'] = \CategoriesHelper::createCategory($table);
 		}
 
 		// Alter the title for save as copy
@@ -329,7 +332,7 @@ class AgosmModel extends AdminModel
 	 *
 	 * @since    3.6.0
 	 */
-	protected function preprocessForm(JForm $form, $data, $group = 'content')
+	protected function preprocessForm(\JForm $form, $data, $group = 'content')
 	{
 		if ($this->canCreateCategory())
 		{
@@ -337,9 +340,9 @@ class AgosmModel extends AdminModel
 		}
 
 		// Association agosms items
-		if (JLanguageAssociations::isEnabled())
+		if (\JLanguageAssociations::isEnabled())
 		{
-			$languages = JLanguageHelper::getContentLanguages(false, true, null, 'ordering', 'asc');
+			$languages = \JLanguageHelper::getContentLanguages(false, true, null, 'ordering', 'asc');
 
 			if (count($languages) > 1)
 			{

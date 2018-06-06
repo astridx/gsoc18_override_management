@@ -92,7 +92,7 @@ class AgosmTable extends Table
 		}
 
 		// Verify that the alias is unique
-		$table = JTable::getInstance('Agosm', 'AgosmsTable');
+		$table = \JTable::getInstance('Agosm', 'AgosmsTable');
 
 		if ($table->load(array('language' => $this->language, 'alias' => $this->alias, 'catid' => $this->catid)) && ($table->id != $this->id || $this->id == 0))
 		{
@@ -102,7 +102,7 @@ class AgosmTable extends Table
 		}
 
 		// Convert IDN urls to punycode
-		$this->url = JStringPunycode::urlToPunycode($this->url);
+		$this->url = \JStringPunycode::urlToPunycode($this->url);
 
 		return parent::store($updateNulls);
 	}
@@ -116,7 +116,7 @@ class AgosmTable extends Table
 	 */
 	public function check()
 	{
-		if (JFilterInput::checkAttribute(array('href', $this->url)))
+		if (\JFilterInput::checkAttribute(array('href', $this->url)))
 		{
 			$this->setError(JText::_('COM_AGOSMS_ERR_TABLES_PROVIDE_URL'));
 
@@ -155,7 +155,7 @@ class AgosmTable extends Table
 			$this->alias = $this->title;
 		}
 
-		$this->alias = JApplicationHelper::stringURLSafe($this->alias, $this->language);
+		$this->alias = \JApplicationHelper::stringURLSafe($this->alias, $this->language);
 
 		if (trim(str_replace('-', '', $this->alias)) == '')
 		{

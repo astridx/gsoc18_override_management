@@ -37,8 +37,8 @@ class AgosmsTableAgosm extends JTable
 		// Set the published column alias
 		$this->setColumnAlias('published', 'state');
 
-		JTableObserverTags::createObserver($this, array('typeAlias' => 'com_agosms.agosm'));
-		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_agosms.agosm'));
+		//JTableObserverTags::createObserver($this, array('typeAlias' => 'com_agosms.agosm'));
+		//JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_agosms.agosm'));
 	}
 
 	/**

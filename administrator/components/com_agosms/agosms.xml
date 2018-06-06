@@ -44,7 +44,6 @@
 <folder>models</folder>
 <folder>views</folder>
 <folder>language</folder>
-
 <file>agosms.php</file>
 <file>controller.php</file>
 <file>metadata.xml</file>
@@ -78,7 +77,7 @@
 <folder>sql</folder>
 <folder>tables</folder>
 <folder>views</folder>
-
+<folder>language</folder>
 <file>access.xml</file>
 <file>agosms.php</file>
 <file>config.xml</file>
