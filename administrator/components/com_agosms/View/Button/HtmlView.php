@@ -6,14 +6,18 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+namespace Joomla\Component\Agosms\Administrator\View\Button;
+
 defined('_JEXEC') or die;
+
+use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 
 /**
  * HTML View class for the Agosm component
  *
  * @since  1.0
  */
-class AgosmsViewButton extends JViewLegacy
+class HtmlView extends BaseHtmlView
 {
 	/**
 	 * Execute and display a template script.
@@ -26,9 +30,9 @@ class AgosmsViewButton extends JViewLegacy
 	 */
 	public function display($tpl = null)
 	{
-		$config = JComponentHelper::getParams('com_agosm');
+		$config = \JComponentHelper::getParams('com_agosm');
 
-		$this->session     = JFactory::getSession();
+		$this->session     = \JFactory::getSession();
 		$this->config      = $config;
 
 		parent::display($tpl);

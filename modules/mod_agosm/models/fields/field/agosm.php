@@ -15,7 +15,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
 
 /**
- * Provides a modal media selector including upload mechanism
+ * Provides a modal coodinate selector
  *
  * @since  1.6
  */
@@ -27,7 +27,7 @@ class AgosmField extends FormField
 	 * @var    string
 	 * @since  1.6
 	 */
-	protected $type = 'Media';
+	protected $type = 'Agosm';
 
 	/**
 	 * The authorField.
@@ -107,7 +107,7 @@ class AgosmField extends FormField
 	 * @var    string
 	 * @since  3.5
 	 */
-	protected $layout = 'joomla.form.field.media';
+	protected $layout = 'agosm';
 
 	/**
 	 * Method to get certain otherwise inaccessible properties from the form field object.
@@ -270,5 +270,22 @@ class AgosmField extends FormField
 		);
 
 		return array_merge($data, $extraData);
+	}
+	/**
+	 * Get the layout paths
+	 *
+	 * @return  array
+	 *
+	 * @since   3.5
+	 */
+	protected function getLayoutPaths()
+	{
+		$template = \JFactory::getApplication()->getTemplate();
+
+		return array(
+			JPATH_ADMINISTRATOR . '/templates/' . $template . '/html/layouts/plugins/system/stats',
+			dirname(__DIR__) . '/layouts',
+			JPATH_SITE . '/layouts'
+		);
 	}
 }

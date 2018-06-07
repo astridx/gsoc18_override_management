@@ -27,7 +27,7 @@ use Joomla\CMS\Uri\Uri;
  * @var  string   $id The label text
  * @var  string   $link The link text
  * @var  string   $name The name text
- * @var  string   $preview The preview image relative path
+ * @var  string   $preview The preview image relative path -> default false
  * @var  integer  $previewHeight The image preview height
  * @var  integer  $previewWidth The image preview width
  * @var  string   $onchange  The onchange text
@@ -47,53 +47,7 @@ $attr .= !empty($size) ? ' size="' . $size . '"' : '';
 // Initialize JavaScript field attributes.
 $attr .= !empty($onchange) ? ' onchange="' . $onchange . '"' : '';
 
-switch ($preview)
-{
-	case 'no': // Deprecated parameter value
-	case 'false':
-	case 'none':
-		$showPreview = false;
-		break;
-	case 'yes': // Deprecated parameter value
-	case 'true':
-	case 'show':
-	case 'tooltip':
-	default:
-		$showPreview = true;
-		break;
-}
-
-// Pre fill the contents of the popover
-if ($showPreview)
-{
-	if ($value && file_exists(JPATH_ROOT . '/' . $value))
-	{
-		$src = Uri::root() . $value;
-	}
-	else
-	{
-		$src = '';
-	}
-	$width = $previewWidth;
-	$height = $previewHeight;
-	$style = '';
-	$style .= ($width > 0) ? 'max-width:' . $width . 'px;' : '';
-	$style .= ($height > 0) ? 'max-height:' . $height . 'px;' : '';
-
-	$imgattr = array(
-		'id' => $id . '_preview',
-		'class' => 'agosm-preview',
-		'style' => $style,
-	);
-
-	$img = HTMLHelper::_('image', $src, Text::_('JLIB_FORM_MEDIA_PREVIEW_ALT'), $imgattr);
-
-	$previewImg = '<div id="' . $id . '_preview_img"' . '>' . $img . '</div>';
-	$previewImgEmpty = '<div id="' . $id . '_preview_empty"' . ($src ? ' style="display:none"' : '') . '>'
-		. Text::_('JLIB_FORM_MEDIA_PREVIEW_EMPTY') . '</div>';
-
-	$showPreview = 'static';
-}
+$showPreview = false;
 
 // The url for the modal
 $url    = ($readonly ? ''
