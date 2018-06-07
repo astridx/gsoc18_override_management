@@ -41,7 +41,7 @@ extract($displayData);
 $attr = '';
 
 // Initialize some field attributes.
-$attr .= !empty($class) ? ' class="form-control hasTooltip field-media-input ' . $class . '"' : ' class="form-control hasTooltip field-media-input"';
+$attr .= !empty($class) ? ' class="form-control hasTooltip field-agosm-input ' . $class . '"' : ' class="form-control hasTooltip field-agosm-input"';
 $attr .= !empty($size) ? ' size="' . $size . '"' : '';
 
 // Initialize JavaScript field attributes.
@@ -82,7 +82,7 @@ if ($showPreview)
 
 	$imgattr = array(
 		'id' => $id . '_preview',
-		'class' => 'media-preview',
+		'class' => 'agosm-preview',
 		'style' => $style,
 	);
 
@@ -98,24 +98,24 @@ if ($showPreview)
 // The url for the modal
 $url    = ($readonly ? ''
 	: ($link ? $link
-		: 'index.php?option=com_media&amp;tmpl=component&amp;asset='
+		: 'index.php?option=com_agosm&amp;tmpl=component&amp;asset='
 		. $asset . '&amp;author=' . $authorId)
-	. '&amp;fieldid={field-media-id}&amp;path=' . $folder);
+	. '&amp;fieldid={field-agosm-id}&amp;path=' . $folder);
 ?>
-<joomla-field-media class="field-media-wrapper"
-		type="image" <?php // @TODO add this attribute to the field in order to use it for all media types ?>
+<joomla-field-agosm class="field-agosm-wrapper"
+		type="image" <?php // @TODO add this attribute to the field in order to use it for all agosm types ?>
 		base-path="<?php echo Uri::root(); ?>"
-		root-folder="<?php echo ComponentHelper::getParams('com_media')->get('file_path', 'images'); ?>"
+		root-folder="<?php echo ComponentHelper::getParams('com_agosm')->get('file_path', 'images'); ?>"
 		url="<?php echo $url; ?>"
 		modal-container=".modal"
 		modal-width="100%"
 		modal-height="400px"
-		input=".field-media-input"
+		input=".field-agosm-input"
 		button-select=".button-select"
 		button-clear=".button-clear"
 		button-save-selected=".button-save-selected"
 		preview="static"
-		preview-container=".field-media-preview"
+		preview-container=".field-agosm-preview"
 		preview-width="<?php echo $previewWidth; ?>"
 		preview-height="<?php echo $previewHeight; ?>"
 >
@@ -135,11 +135,12 @@ $url    = ($readonly ? ''
 		)
 	);
 
-	HTMLHelper::_('webcomponent', 'system/webcomponents/joomla-field-media.min.js', ['relative' => true, 'version' => 'auto', 'detectBrowser' => false, 'detectDebug' => true]);
+	HTMLHelper::_('script', 'com_agosms/joomla-field-agosm.js', ['relative' => true, 'version' => 'auto', 'detectBrowser' => false, 'detectDebug' => true]);
+
 	Text::script('JLIB_FORM_MEDIA_PREVIEW_EMPTY', true);
 	?>
 	<?php if ($showPreview) : ?>
-		<div class="field-media-preview" style="height:auto">
+		<div class="field-agosm-preview" style="height:auto">
 			<?php echo ' ' . $previewImgEmpty; ?>
 			<?php echo ' ' . $previewImg; ?>
 		</div>
@@ -153,4 +154,4 @@ $url    = ($readonly ? ''
 			</div>
 		<?php endif; ?>
 	</div>
-</joomla-field-media>
+</joomla-field-agosm>
