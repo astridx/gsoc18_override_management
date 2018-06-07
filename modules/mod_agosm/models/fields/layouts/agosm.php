@@ -28,8 +28,8 @@ use Joomla\CMS\Uri\Uri;
  * @var  string   $link The link text
  * @var  string   $name The name text
  * @var  string   $preview The preview image relative path -> default false
- * @var  integer  $previewHeight The image preview height
- * @var  integer  $previewWidth The image preview width
+ * @var  integer  $previewHeight The image preview height -> default false
+ * @var  integer  $previewWidth The image preview width -> default false
  * @var  string   $onchange  The onchange text
  * @var  boolean  $readonly True if field is readonly
  * @var  integer  $size The size text
@@ -50,11 +50,7 @@ $attr .= !empty($onchange) ? ' onchange="' . $onchange . '"' : '';
 $showPreview = false;
 
 // The url for the modal
-$url    = ($readonly ? ''
-	: ($link ? $link
-		: 'index.php?option=com_agosm&amp;tmpl=component&amp;asset='
-		. $asset . '&amp;author=' . $authorId)
-	. '&amp;fieldid={field-agosm-id}&amp;path=' . $folder);
+$url = 'index.php?option=com_agosms&amp;view=button&amp;tmpl=component';
 ?>
 <joomla-field-agosm class="field-agosm-wrapper"
 		type="image" <?php // @TODO add this attribute to the field in order to use it for all agosm types ?>
@@ -68,10 +64,6 @@ $url    = ($readonly ? ''
 		button-select=".button-select"
 		button-clear=".button-clear"
 		button-save-selected=".button-save-selected"
-		preview="static"
-		preview-container=".field-agosm-preview"
-		preview-width="<?php echo $previewWidth; ?>"
-		preview-height="<?php echo $previewHeight; ?>"
 >
 	<?php
 	// Render the modal
@@ -91,14 +83,7 @@ $url    = ($readonly ? ''
 
 	HTMLHelper::_('script', 'com_agosms/joomla-field-agosm.js', ['relative' => true, 'version' => 'auto', 'detectBrowser' => false, 'detectDebug' => true]);
 
-	Text::script('JLIB_FORM_MEDIA_PREVIEW_EMPTY', true);
 	?>
-	<?php if ($showPreview) : ?>
-		<div class="field-agosm-preview" style="height:auto">
-			<?php echo ' ' . $previewImgEmpty; ?>
-			<?php echo ' ' . $previewImg; ?>
-		</div>
-	<?php endif; ?>
 	<div class="input-group">
 		<input type="text" name="<?php echo $name; ?>" id="<?php echo $id; ?>" value="<?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>" readonly="readonly"<?php echo $attr; ?>>
 		<?php if ($disabled != true) : ?>
