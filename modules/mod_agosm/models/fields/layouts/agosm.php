@@ -68,16 +68,16 @@ $url = 'index.php?option=com_agosms&amp;view=button&amp;tmpl=component';
 	<?php
 	// Render the modal
 	echo HTMLHelper::_('bootstrap.renderModal',
-		'imageModal_'. $id,
+		'agosmModal_'. $id,
 		array(
 			'url'         => $url,
-			'title'       => Text::_('JLIB_FORM_CHANGE_IMAGE'),
+			'title'       => Text::_('MOD_AGOSM_CHANGE_CORDS'),
 			'closeButton' => true,
 			'height' => '100%',
 			'width'  => '100%',
 			'modalWidth'  => '80',
 			'bodyHeight'  => '60',
-			'footer'      => '<button class="btn btn-secondary button-save-selected">' . Text::_('JSELECT') . '</button><button class="btn btn-secondary" data-dismiss="modal">' . Text::_('JCANCEL') . '</button>'
+			'footer'      => '<button class="btn btn-secondary button-agosm-save-selected">' . Text::_('JSELECT') . '</button><button class="btn btn-secondary" data-dismiss="modal">' . Text::_('JCANCEL') . '</button>'
 		)
 	);
 
@@ -85,11 +85,10 @@ $url = 'index.php?option=com_agosms&amp;view=button&amp;tmpl=component';
 
 	?>
 	<div class="input-group">
-		<input type="text" name="<?php echo $name; ?>" id="<?php echo $id; ?>" value="<?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>" readonly="readonly"<?php echo $attr; ?>>
+		<input type="text" role="input" name="<?php echo $name; ?>" id="<?php echo $id; ?>" value="<?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>" <?php echo $attr; ?>>
 		<?php if ($disabled != true) : ?>
 			<div class="input-group-append">
-				<a class="btn btn-secondary button-select"><?php echo Text::_("JLIB_FORM_BUTTON_SELECT"); ?></a>
-				<a class="btn btn-secondary hasTooltip button-clear" title="<?php echo Text::_("JLIB_FORM_BUTTON_CLEAR"); ?>"><span class="fa fa-times" aria-hidden="true"></span></a>
+				<a class="btn btn-secondary button-select-agosm"><?php echo Text::_("JLIB_FORM_BUTTON_SELECT"); ?></a>
 			</div>
 		<?php endif; ?>
 	</div>

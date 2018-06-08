@@ -33,19 +33,3 @@ JText::script('COM_AGOSMS_BUTTON_DEFAULT_POPUP_PROMPT');
 	class=""
 	type="text"
 	>
-<br>
-<button
-	class="btn btn-success button-save-selected"
-	id="buttonsaveselected"
-	type="button"
-	data-dismiss="modal">
-	<?php echo JText::_('COM_AGOSM_INSERT'); ?>
-</button>
-<button
-	class="btn button-cancel"
-	type="button"
-	onclick="window.parent.jModalClose();"
-	data-dismiss="modal">
-	<?php echo JText::_('JCANCEL'); ?>
-</button>
-

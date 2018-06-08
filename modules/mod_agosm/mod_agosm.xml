@@ -2,12 +2,12 @@
 <extension type="module" version="3.6" client="site" method="upgrade">
 	<name>mod_agosm</name>
 	<author>Astrid Günther</author>
-	<creationDate>2018-03-27</creationDate>
+	<creationDate>2018-06-08</creationDate>
 	<copyright>(C) 2018 Open Source Matters. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later;</license>
 	<authorEmail>info@astrid-guenther.de</authorEmail>
 	<authorUrl>www.astrid-guenther.de</authorUrl>
-	<version>1.0.23</version>
+	<version>1.0.25</version>
 	<description>MOD_AGOSM_XML_DESCRIPTION</description>
 	<scriptfile>script.php</scriptfile>
 

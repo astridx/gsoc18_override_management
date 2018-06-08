@@ -12,10 +12,16 @@
 		window['mymap' + unique].on('click', onMapClick);
 		var marker = L.marker([50.28, 7.27]).addTo(window['mymap' + unique]).bindPopup(Joomla.JText._('COM_AGOSMS_BUTTON_DEFAULT_POPUP_PROMPT')).openPopup();
 		cordsTextField.value = "50.28, 7.27";
+		if (typeof (Storage) !== 'undefined') {
+			localStorage.setItem('cordsTextFieldValue', "50.28, 7.27");
+		}
 		function onMapClick(e) {
 			const cordsTextField = document.getElementById("jform_paramsmodal_cords_map");
 			if (cordsTextField) {
 				cordsTextField.value = e.latlng.lat + ', ' + e.latlng.lng;
+				if (typeof (Storage) !== 'undefined') {
+					localStorage.setItem('cordsTextFieldValue', e.latlng.lat + ', ' + e.latlng.lng);
+				}
 				var lat = (e.latlng.lat);
 				var lng = (e.latlng.lng);
 				var newLatLng = new L.LatLng(lat, lng);
@@ -30,6 +36,7 @@
 			$_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
 		}
 
+		/* Todo Need this for joomla! 3.x */
 		const buttonSaveSelected = document.getElementById("buttonsaveselected");
 		const cordsParentTextField = window.parent.document.getElementById($_GET.fieldid);
 		if (buttonSaveSelected && cordsParentTextField && cordsTextField) {
