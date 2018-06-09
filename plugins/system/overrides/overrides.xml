@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="__VERSION__" type="plugin" group="system" method="upgrade">
+	<name>plg_system_overrides</name>
+	<author>Joomla! Project</author>
+	<creationDate>__DATE__</creationDate>
+	<copyright>Copyright (C) 2005 - 2018 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>admin@joomla.org</authorEmail>
+	<authorUrl>www.joomla.org</authorUrl>
+	<version>__VERSION__</version>
+	<description>PLG_SYSTEM_OVERRIDES_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="overrides">overrides.php</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">en-GB.plg_overrides_overrides.ini</language>
+		<language tag="en-GB">en-GB.plg_overrides_overrides.sys.ini</language>
+	</languages>
+</extension>

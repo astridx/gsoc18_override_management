@@ -82,6 +82,8 @@ class InstallModel extends BaseDatabaseModel
 		// (e.g. from a \JSON description).
 		$results = $app->triggerEvent('onInstallerBeforeInstallation', array($this, &$package));
 
+		$app->triggerEvent('onInstallerSaveOverrides', array($this));
+
 		if (in_array(true, $results, true))
 		{
 			return true;
@@ -204,6 +206,8 @@ class InstallModel extends BaseDatabaseModel
 
 		// This event allows a custom a post-flight:
 		$app->triggerEvent('onInstallerAfterInstaller', array($this, &$package, $installer, &$result, &$msg));
+
+		$app->triggerEvent('onInstallerCheckOverrides', array($this, &$package, $installer, &$result, &$msg));
 
 		// Set some model state values.
 		$app->enqueueMessage($msg, $msgType);
